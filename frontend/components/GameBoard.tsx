@@ -53,13 +53,14 @@ const GameBoard: React.FC = () => {
     setIsAnimating(true);
     const newBoard = board.map((row) => [...row]);
     
-    // Swap
+    // Swap with smooth animation
     const temp = newBoard[row1][col1];
     newBoard[row1][col1] = newBoard[row2][col2];
     newBoard[row2][col2] = temp;
 
     setBoard(newBoard);
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    // Wait for swap animation to complete
+    await new Promise((resolve) => setTimeout(resolve, 350));
 
     const matches = checkForMatches(newBoard);
 
@@ -68,13 +69,13 @@ const GameBoard: React.FC = () => {
       setSelectedCell(null);
       await processMatches(newBoard, matches);
     } else {
-      // Swap back if no match
+      // Swap back with bounce animation if no match
       const temp = newBoard[row1][col1];
       newBoard[row1][col1] = newBoard[row2][col2];
       newBoard[row2][col2] = temp;
       setBoard(newBoard);
       setSelectedCell(null);
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 350));
       setIsAnimating(false);
     }
   };

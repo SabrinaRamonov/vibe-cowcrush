@@ -88,8 +88,8 @@ const GameBoard: React.FC = () => {
     const points = matches.length * 10 + (matches.length > 3 ? (matches.length - 3) * 20 : 0);
     incrementScore(points);
 
-    // Wait for UFO animation
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // Wait for UFO animation (UFO comes, beams, lifts cows)
+    await new Promise((resolve) => setTimeout(resolve, 1600));
 
     // Remove matched cows
     const newBoard = currentBoard.map((row) => [...row]);
